@@ -5,10 +5,9 @@ import Homepage from './Components/Homepage/main';
 
 function App() {
   return (
-   <ChatGPT />
-  /* <Homepage /> */
+  // <ChatGPT />
+  <Homepage />
   );
 }
 
 export default App;
-
