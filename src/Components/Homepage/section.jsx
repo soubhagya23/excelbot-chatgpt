@@ -18,9 +18,13 @@ const Section = () => {
                 {/* heading starts */}
                 <div className="dtr-section-intro text-left">
                   <div className="dtr-intro-subheading-wrapper">
-                    <p className="dtr-intro-subheading">The XaaS App</p>
+                    <p className="dtr-intro-subheading" style={{fontWeight:'400'}}>The XaaS App</p>
                   </div>
-                  <h2 className="dtr-intro-heading">
+                  <h2 className="dtr-intro-heading"  style={{
+                  fontWeight: "800",
+                  fontSize: "3em",
+                  lineHeight: "1.2em",
+                }}>
                     Increase your
                     <br />
                     conversion rate by 100%

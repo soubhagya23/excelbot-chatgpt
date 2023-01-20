@@ -19,7 +19,7 @@ function ChatGPT() {
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `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`,
+          "Authorization": `Bearer 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`,
         },
       });
       setAnswer(res.data.choices[0].text);
