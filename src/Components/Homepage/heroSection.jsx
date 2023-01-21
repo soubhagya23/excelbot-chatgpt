@@ -62,7 +62,6 @@ const HeroSection = () => {
                 >
                   {newName}
                 </AnimatedText>
-                ;
               </p>
 
               <h1
