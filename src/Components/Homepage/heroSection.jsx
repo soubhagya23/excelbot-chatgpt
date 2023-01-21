@@ -7,7 +7,7 @@ import img4 from "../assets/images/client-4.png";
 import img5 from "../assets/images/client-5.png";
 import img6 from "../assets/images/client-1.png";
 import { IoRocketSharp } from "react-icons/io5";
-import AnimatedText from "react-animated-text-content";
+// import AnimatedText from "react-animated-text-content";
 
 const names = [
   "Blazing fast technology⚡",
@@ -43,7 +43,7 @@ const HeroSection = () => {
                   animation: "slide-out 0.6s",
                 }}
               >
-                <AnimatedText
+                {/* <AnimatedText
                   type="words" // animate words or chars
                   animation={{
                     x: "200px",
@@ -61,7 +61,7 @@ const HeroSection = () => {
                   rootMargin="20%"
                 >
                   {newName}
-                </AnimatedText>
+                </AnimatedText> */}
               </p>
 
               <h1
