@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../fireBase/authContext';
 import { CgProfile } from 'react-icons/cg'
-import { GrGoogle } from 'react-icons/gr' 
+import { GrGoogle } from 'react-icons/gr'
 import { NavLink } from 'react-router-dom'
 // import LogoDark from "../assets/images/logo-dark.png";
 
@@ -65,12 +65,9 @@ const Header = () => {
                                 </a>{" "}
                             </li>
                             <li>
-                                {user.displayName ?
+                                {user ?
                                     <NavLink to='/dashboard' className='no-underline'>
-                                        <div className='flex justify-center items-center text-center cursor-pointer space-x-2'>
-                                            <h6 className='text-violet-600 font-bold'>{user.displayName}</h6>
-                                            <CgProfile className='text-lg font-bold text-violet-600' />
-                                        </div>
+                                        <CgProfile className='text-xl font-bold text-violet-600' />
                                     </NavLink>
                                     :
                                     <div className=''>
