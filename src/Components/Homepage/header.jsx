@@ -7,11 +7,19 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => {
 
-    const { googleSignIn, user } = useAuth();
+    const { googleSignIn, user, logOut } = useAuth();
 
     const handleSignIn = async () => {
         try {
             await googleSignIn();
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const handleSignOut = async () => {
+        try {
+            await logOut();
         } catch (error) {
             console.log(error.message);
         }
@@ -66,9 +74,12 @@ const Header = () => {
                             </li>
                             <li>
                                 {user ?
-                                    <NavLink to='/dashboard' className='no-underline'>
-                                        <CgProfile className='text-xl font-bold text-violet-600' />
-                                    </NavLink>
+                                    <div>
+                                        <NavLink to='/dashboard' className='no-underline'>
+                                            <CgProfile className='text-xl font-bold text-violet-600' />
+                                        </NavLink>
+                                        <button onClick={handleSignOut}>Log Out</button>
+                                    </div>
                                     :
                                     <div className=''>
                                         <GrGoogle className='text-xl text-white' />
