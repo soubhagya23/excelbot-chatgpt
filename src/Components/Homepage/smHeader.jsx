@@ -10,7 +10,7 @@ const SmHeader = () => {
           <div className="dtr-responsive-header-left">
             {" "}
             <a className="dtr-logo" href="index.html">
-              <img src={LogoDark} alt="logo" />
+             {/*  <img src={LogoDark} alt="logo" /> */}
             </a>{" "}
           </div>
           {/* small devices logo ends */}

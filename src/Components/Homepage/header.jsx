@@ -10,11 +10,11 @@ const Header = () => {
                     <div className="dtr-header-left">
                         {/* logo */}
                         <a className="logo-default dtr-scroll-link" href="#home">
-                            <img src={LogoDark} alt="logo" />
+                        <h4>AIBot</h4>
                         </a>
                         {/* logo on scroll */}
                         <a className="logo-alt dtr-scroll-link" href="#home">
-                            <img src={LogoDark} alt="logo" />
+                            <h4>AIBot</h4>
                         </a>
                         {/* logo on scroll ends */}
                     </div>
@@ -34,30 +34,15 @@ const Header = () => {
                                     Features
                                 </a>{" "}
                             </li>
-                            <li>
-                                {" "}
-                                <a className="nav-link" href="#team">
-                                    The Team
-                                </a>{" "}
-                            </li>
-                            <li>
-                                {" "}
-                                <a className="nav-link" href="#reviews">
-                                    Reviews
-                                </a>{" "}
-                            </li>
+                           
+                           
                             <li>
                                 {" "}
                                 <a className="nav-link" href="#pricing">
                                     Pricing
                                 </a>{" "}
                             </li>
-                            <li>
-                                {" "}
-                                <a className="nav-link" href="#blog">
-                                    Blog
-                                </a>{" "}
-                            </li>
+                           
                             <li>
                                 {" "}
                                 <a className="nav-link" href="#contact">
