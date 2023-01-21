@@ -10,7 +10,7 @@ const Tab = () => {
             {/* heading starts */}
             <div className="dtr-section-intro text-left dtr-mb-50">
               <div className="dtr-intro-subheading-wrapper">
-                <p className="dtr-intro-subheading">Why XaaSvik?</p>
+                <p className="dtr-intro-subheading">Why AIBot?</p>
               </div>
               <h2 className="dtr-intro-heading">
                 Fast and intuitive integration

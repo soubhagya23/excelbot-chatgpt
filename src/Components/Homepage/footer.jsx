@@ -11,7 +11,7 @@ const Footer = () => {
               {/*== column 1 starts ==*/}
               <div className="col-12 col-md-6 col-lg-5">
                 <a className="dtr-scroll-link" href="#home">
-                  <img src={logoLight} alt="logo" />
+                 <h4>AIBot</h4>
                 </a>
                 <p className="dtr-mt-20 dtr-mb-40">
                   There are many variations of passages of
@@ -157,7 +157,7 @@ const Footer = () => {
               {/*== column 1 ends ==*/}
               {/*== column 2 starts ==*/}
               <div className="col-12 col-md-6 text-end small-device-space">
-                <p>© 2021 XaaSvik. All rights reserved</p>
+                <p>© 2021 AIBot. All rights reserved</p>
               </div>
               {/*== column 2 ends ==*/}
             </div>

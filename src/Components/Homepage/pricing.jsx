@@ -136,7 +136,7 @@ const Pricing = () => {
                   {/* price */}
                   <p className="dtr-price-wrapper color-dark">
                     <span className="dtr-price-prefix">
-                      <sup>$</sup>
+                      <sup>₹</sup>
                     </span>
                     <span className="dtr-price">69.90</span>
                     <span className="dtr-price-suffix">
@@ -235,7 +235,7 @@ const Pricing = () => {
                   {/* pricing */}
                   <p className="dtr-price-wrapper color-dark">
                     <span className="dtr-price-prefix">
-                      <sup>$</sup>
+                      <sup>₹</sup>
                     </span>
                     <span className="dtr-price">99.90</span>
                     <span className="dtr-price-suffix">

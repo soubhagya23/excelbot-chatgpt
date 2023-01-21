@@ -68,7 +68,6 @@ const HeroSection = () => {
               <h1
                 style={{
                   fontWeight: "800",
-                  fontSize: "4em",
                   lineHeight: "1.2em",
                 }}
               >

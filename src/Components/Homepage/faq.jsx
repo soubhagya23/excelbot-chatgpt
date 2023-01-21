@@ -37,7 +37,7 @@ const Faq = () => {
                         aria-controls="accordion1-collapseOne"
                       >
                         {" "}
-                        What is XaaS based service?{" "}
+                        Lorem ipsum dolor sit amet
                       </button>
                     </p>
                     <div
@@ -67,7 +67,7 @@ const Faq = () => {
                         aria-controls="accordion1-collapseTwo"
                       >
                         {" "}
-                        Can I see application in full action before purchase?{" "}
+                        Lorem ipsum dolor sit amet{" "}
                       </button>
                     </p>
                     <div
@@ -100,7 +100,7 @@ const Faq = () => {
                         aria-controls="accordion1-collapseThree"
                       >
                         {" "}
-                        Does service required virtualized hardware?{" "}
+                        Lorem ipsum dolor sit amet{" "}
                       </button>
                     </p>
                     <div
@@ -130,7 +130,7 @@ const Faq = () => {
                         aria-controls="accordion1-collapseFour"
                       >
                         {" "}
-                        What are the benefits of XaaS?{" "}
+                        Lorem ipsum dolor sit amet{" "}
                       </button>
                     </p>
                     <div
@@ -160,7 +160,7 @@ const Faq = () => {
                         aria-controls="accordion1-collapseFour"
                       >
                         {" "}
-                        How much is the operation cost?{" "}
+                        Lorem ipsum dolor sit amet{" "}
                       </button>
                     </p>
                     <div

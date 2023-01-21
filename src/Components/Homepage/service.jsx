@@ -18,8 +18,7 @@ const Service = () => {
             className="dtr-intro-heading"
             style={{
               fontWeight: "800",
-              fontSize: "3em",
-              lineHeight: "1.2em",
+             
             }}
           >
             Flexible &amp; Scalable...

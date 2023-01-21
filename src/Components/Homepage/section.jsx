@@ -22,8 +22,6 @@ const Section = () => {
                   </div>
                   <h2 className="dtr-intro-heading"  style={{
                   fontWeight: "800",
-                  fontSize: "3em",
-                  lineHeight: "1.2em",
                 }}>
                     Increase your
                     <br />
