@@ -3,6 +3,9 @@ import { useAuth } from '../../fireBase/authContext';
 import { CgProfile } from 'react-icons/cg'
 import { GrGoogle } from 'react-icons/gr'
 import { NavLink } from 'react-router-dom'
+import Box from '@mui/material/Box'
+import { Button, IconButton } from '@mui/material';
+import { spacing } from '@mui/system'
 // import LogoDark from "../assets/images/logo-dark.png";
 
 const Header = () => {
@@ -75,16 +78,17 @@ const Header = () => {
                             <li>
                                 {user ?
                                     <div>
-                                        <NavLink to='/dashboard' className='no-underline'>
-                                            <CgProfile className='text-xl font-bold text-violet-600' />
-                                        </NavLink>
-                                        <button onClick={handleSignOut}>Log Out</button>
+                                        <Box sx={{display: 'flex'}}>
+                                            <NavLink to='/dashboard' className='no-underline'>
+                                                <IconButton variant='text' size='small'><CgProfile size='20px' color='blue' /></IconButton>
+                                            </NavLink>
+                                            <Button onClick={handleSignOut} variant='outlined'>Log Out</Button>
+                                        </Box>
                                     </div>
                                     :
-                                    <div className=''>
-                                        <GrGoogle className='text-xl text-white' />
-                                        <button onClick={handleSignIn} className='font-bold text-lg text-white'>Log In</button>
-                                    </div>
+                                    <Box>   
+                                        <Button onClick={handleSignIn} variant='contained'><Box sx={{ pr: 2, pb: '1px' }}><GrGoogle size='20px'/></Box>Log In</Button>
+                                    </Box>
                                 }
                             </li>
                         </ul>
