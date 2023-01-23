@@ -9,6 +9,8 @@ function ChatGPT() {
     setQuestion(event.target.value);
   };
 
+  // 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 {API KEY}
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

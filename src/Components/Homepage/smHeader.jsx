@@ -45,12 +45,16 @@ const SmHeader = () => {
           </Box>
           {/* small devices logo ends */}
           {
-            user &&
-            <Box sx={{ display: 'flex' }}>
-              <NavLink to='/dashboard' className='no-underline'>
-                <IconButton variant='text'><CgProfile size='24px' color='blue' /></IconButton>
-              </NavLink>
-            </Box>
+            user ?
+              <Box sx={{ display: 'flex' }}>
+                <NavLink to='/dashboard' className='no-underline'>
+                  <IconButton variant='text'><CgProfile size='24px' color='blue' /></IconButton>
+                </NavLink>
+              </Box>
+              :
+              <Box>
+                <Button onClick={handleSignIn} variant='contained'><Box sx={{ pr: 2, pb: '1px' }}><GrGoogle size='20px' /></Box>Log In</Button>
+              </Box>
           }
         </div>
         {
@@ -77,16 +81,12 @@ const SmHeader = () => {
               </a>
             </li>
             <li>
-              {user ?
+              {user &&
                 <div>
                   <Box sx={{ display: 'flex' }}>
-                    <Button onClick={handleSignOut} variant='outlined' sx={{width: '100px', mt: '5px'}}>Log Out</Button>
+                    <Button onClick={handleSignOut} variant='outlined' sx={{ width: '100px', mt: '5px' }}>Log Out</Button>
                   </Box>
                 </div>
-                :
-                <Box>
-                  <Button onClick={handleSignIn} variant='contained'><Box sx={{ pr: 2, pb: '1px' }}><GrGoogle size='20px' /></Box>Log In</Button>
-                </Box>
               }
             </li>
           </ul>
