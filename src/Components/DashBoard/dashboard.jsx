@@ -1,3 +1,4 @@
+import { Configuration, OpenAIApi } from "openai"
 import React, { useState } from "react";
 import {
   MDBContainer,
@@ -14,46 +15,48 @@ import axios from "axios";
 
 const DashBorad = () => {
 
+  const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_APIKEY,
+  });
+  const openai = new OpenAIApi(configuration);
+
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [loading , setLoading] = useState(false) ;
 
   const handleQuestionChange = (event) => {
     setQuestion(event.target.value);
   };
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-    console.log('clicked');
+  const handleClick = async () => {
+    setLoading(true);
+    
     try {
-      const res = await axios.post("https://api.openai.com/v1/engines/davinci/completions", {
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
         prompt: question,
+        temperature: 0.5,
         max_tokens: 1024,
-      },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer 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`,
-          },
-        });
-      setAnswer(res.data.choices[0].text);
-      console.log(answer);
+      });
+      setAnswer(response.data.choices[0].text);
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   return (
     <MDBContainer className="py-5">
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="8" lg="6" xl="4">
-          <div className="d-flex">
+          {/* <div className="d-flex">
             <input type="checkbox" id="excel" name="excel" value="excel" className="checkbox-style" />
             <label for="excel"> Excel</label><br />
           </div>
           <div className="d-flex">
             <input type="checkbox" id="python" name="python" value="python" className="checkbox-style" />
             <label for="python"> Python</label><br />
-          </div>
+          </div> */}
           <MDBCard id="chat1" style={{ borderRadius: "15px", marginTop: '12px' }}>
             <MDBCardBody>
               <div className="d-flex flex-row justify-content-end mb-4">
@@ -62,7 +65,7 @@ const DashBorad = () => {
                   style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}
                 >
                   <p className="small mb-0">
-                    What is a VLookup in Excel ?
+                    Type Anything
                   </p>
                 </div>
                 <img
@@ -71,7 +74,7 @@ const DashBorad = () => {
                   style={{ width: "45px", height: "100%" }}
                 />
               </div>
-              <div className="d-flex flex-row justify-content-start mb-4">
+             {/*  <div className="d-flex flex-row justify-content-start mb-4">
                 <img
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                   alt="avatar 1"
@@ -88,7 +91,7 @@ const DashBorad = () => {
                     VLOOKUP function says: What you want to look up, where you want to look for it, the column number in the range containing the value to return.
                   </p>
                 </div>
-              </div>
+              </div> */}
               {
                 question !== '' &&
                 <div className="d-flex flex-row justify-content-end mb-4">
@@ -128,7 +131,7 @@ const DashBorad = () => {
                 </div>
               </div>
               }
-              <div className="d-flex flex-row justify-content-end mb-4">
+             {/*  <div className="d-flex flex-row justify-content-end mb-4">
                 <div
                   className="p-3 me-3 border"
                   style={{ borderRadius: "15px", backgroundColor: "rgb(134 255 214)" }}
@@ -148,7 +151,7 @@ const DashBorad = () => {
                   </p>
 
                 </div>
-              </div>
+              </div> */}
 
               <MDBTextArea
                 className="form-outline"
@@ -160,7 +163,7 @@ const DashBorad = () => {
               />
 
               <Button variant="contained" sx={{ display: 'flex', width: '100%', marginTop: '10px', borderRadius: '20px', backgroundColor: 'rgb(134 169 255)', padding: '11px', color: 'black' }} onClick={handleClick}>
-                <RiSendPlaneFill size='18px' style={{ marginRight: '10px' }} />Generate
+                <RiSendPlaneFill size='18px' style={{ marginRight: '10px' }} />{loading ? 'Generating...' : 'Generate' }
               </Button>
 
             </MDBCardBody>
