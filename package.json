@@ -12,7 +12,6 @@
     "axios": "^1.2.3",
     "dotenv": "^16.0.3",
     "firebase": "^9.16.0",
-    "got": "^11.8.0",
     "mdb-react-ui-kit": "^5.1.0",
     "openai": "^3.1.0",
     "react": "^18.2.0",
