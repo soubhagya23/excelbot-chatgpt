@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import DashBoard from './Components/DashBoard/dashboard';
 import Header from './Components/Homepage/header';
 import SmHeader from './Components/Homepage/smHeader';
+import ChatGPT from './Components/apidemo';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
        <Route path='/dashboard' element={<DashBoard />}/>
      </Routes>
      </div>
-   </>
+     </>
   );
 }
 

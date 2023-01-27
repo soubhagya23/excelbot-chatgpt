@@ -1,5 +1,7 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+const { Configuration, OpenAIApi } = require("openai");
+
 
 function ChatGPT() {
   const [question, setQuestion] = useState("");
@@ -11,6 +13,7 @@ function ChatGPT() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('clicked') ;
     try {
       const res = await axios.post("https://api.openai.com/v1/engines/davinci/completions", {
         prompt: question,
@@ -19,25 +22,27 @@ function ChatGPT() {
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer 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`,
+          "Authorization": `Bearer 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`,
         },
       });
       setAnswer(res.data.choices[0].text);
+      console.log(answer) ;
     } catch (error) {
       console.error(error);
     }
   };
 
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
           value={question}
           onChange={handleQuestionChange}
           placeholder="Ask ChatGPT a question..."
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
       <p>{answer}</p>
     </div>
