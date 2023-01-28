@@ -5,6 +5,7 @@ import DashBoard from './Components/DashBoard/dashboard';
 import Header from './Components/Homepage/header';
 import SmHeader from './Components/Homepage/smHeader';
 import ChatGPT from './Components/apidemo';
+import SpeechRecognition from './Components/DashBoard/SpeechRecognition';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
      <Routes>
         <Route path='/' element={<Homepage />}/>
        <Route path='/dashboard' element={<DashBoard />}/>
+       <Route path='/test' element={<SpeechRecognition />}/>
      </Routes>
      </div>
      </>
