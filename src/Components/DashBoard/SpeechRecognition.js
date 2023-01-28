@@ -1,58 +1,57 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import openai from "openai";
 
 const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-function SpeechRecognition() {
-  const [generatedText, setGeneratedText] = useState('');
+const SpeechRecognition = () => {
+  const [text, setText] = useState("");
+  const [isListening, setIsListening] = useState(false);
 
-  const handleVoiceCommand = async (e) => {
-    if (e.results && e.results.length > 0) {
-      const voiceCommand = e.results[0][0].transcript;
-      const response = await axios.post(
-        'https://api.openai.com/v1/engines/davinci-codex/completions',
-        {
-          prompt: voiceCommand,
-          temperature: 0.5,
-          max_tokens: 100
-        },
-        {
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENAI_API_KEY}` }
-        }
-      );
-      const generatedText = response.data.choices[0].text;
-      setGeneratedText(generatedText);
-    } else {
-      setGeneratedText('No speech detected. Please try again.');
-    }
-  }
+  const handleVoiceCommand = (event) => {
+    setIsListening(false);
+    const transcript = event.results[0][0].transcript;
+    setText(transcript);
 
-  const handleClick = () => {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-          const recognition = new SpeechRecognition();
-          recognition.start();
-          recognition.onresult = handleVoiceCommand;
-          recognition.onend = () => {
-            recognition.start();
-          };
-        })
-        .catch(err => {
-          setGeneratedText('Failed to get microphone access. Please try again.');
-        });
-    }else if(!('webkitSpeechRecognition' in window)){
-        setGeneratedText('Your browser does not support speech recognition. Please try again with different browser');
-    }else if(!('getUserMedia' in navigator.mediaDevices)){
-        setGeneratedText('Your browser does not support microphone access. Please try again with different browser');
+    openai
+      .completions({
+        engine: "text-davinci-002",
+        prompt: transcript,
+        max_tokens: 100,
+        n: 1,
+        stop: ".",
+        temperature: 0.5,
+      })
+      .then((response) => {
+        setText(response.choices[0].text);
+      });
+  };
+
+  const handleClick = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+      });
+      const recognizer = new window.SpeechRecognition();
+      recognizer.start();
+      setIsListening(true);
+      recognizer.onresult = handleVoiceCommand;
+      recognizer.onend = () => setIsListening(false);
+      recognizer.addEventListener("audioend", () => {
+        stream.getTracks().forEach((track) => track.stop());
+      });
+    } catch (error) {
+      console.log("Failed to get microphone access:", error);
     }
   };
-  
+
   return (
-    <div style={{marginTop:200}}>
-    <button onClick={handleClick}>Generate Text</button>
-    <p>{generatedText}</p>
-  </div>
+    <div style={{marginTop: 200}}>
+      <button onClick={handleClick}>
+        {isListening ? "Listening..." : "Click to start listening"}
+      </button>
+      <p>{text}</p>
+    </div>
   );
-}
+};
 
 export default SpeechRecognition;
