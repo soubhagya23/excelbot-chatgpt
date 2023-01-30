@@ -7,6 +7,7 @@ import img4 from "../assets/images/client-4.png";
 import img5 from "../assets/images/client-5.png";
 import img6 from "../assets/images/client-1.png";
 import { IoRocketSharp } from "react-icons/io5";
+import PwaIns from "./pwaInstall";
 // import AnimatedText from "react-animated-text-content";
 
 const names = [
@@ -75,7 +76,7 @@ const HeroSection = () => {
               <p className="dtr-intro-content color-dark">
               Our AI-based problem-solving tool is designed to revolutionize the way you approach and solve problems. Try it now and transform the way you work.
               </p>
-
+<PwaIns />
               <a
                 className="dtr-btn dtr-btn-small dtr-mt-50"
                 href="#"

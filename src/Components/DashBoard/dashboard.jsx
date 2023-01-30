@@ -8,11 +8,9 @@ import {
   MDBCardBody,
   MDBTextArea
 } from "mdb-react-ui-kit";
-import { BottomNavigation, BottomNavigationAction, Button } from "@mui/material";
-import { TfiMenuAlt } from 'react-icons/tfi'
+import { Button } from "@mui/material";
 import { RiSendPlaneFill } from 'react-icons/ri'
-import { BsPlusLg } from 'react-icons/bs'
-import { SlCalender } from 'react-icons/sl'
+import FixedBottomNavigation from "../BottomBar/bottomBar";
 
 const DashBorad = () => {
   // Open AI API
@@ -56,6 +54,7 @@ const DashBorad = () => {
     console.log(quesAns);
     return (
       <>
+      
         <div className="d-flex flex-row justify-content-end mb-4">
           <div
             className="p-3 me-3 border"
@@ -144,11 +143,7 @@ const DashBorad = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <BottomNavigation style={{zIndex: '-1' , marginTop: '-10px' , display: 'flex'}}>
-        <BottomNavigationAction icon={<TfiMenuAlt />}/>
-        <BottomNavigationAction icon={<BsPlusLg />} />
-        <BottomNavigationAction icon={<SlCalender />} />
-      </BottomNavigation>
+      <FixedBottomNavigation />
     </>
   );
 }

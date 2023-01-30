@@ -11,24 +11,24 @@ import HeroSection from "./heroSection";
 import Section from "./section";
 import Service from "./service";
 import Section2 from "./section2";
-import Process from "./process";
 import Tab from "./tab";
-import Slider from "./slider";
-import Section3 from "./section3";
 import Pricing from "./pricing";
 import Faq from "./faq";
 import Contact from "./contact";
 import Footer from "./footer";
 
+
 function Homepage() {
   return (
     <div id="dtr-wrapper" className="clearfix">
+      
       <SmHeader />
 
       <Header />
 
       <div id="dtr-main-content">
         <HeroSection />
+       
 
         <Section />
 
