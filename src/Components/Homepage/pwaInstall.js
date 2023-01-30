@@ -1,33 +1,15 @@
 import React from 'react'
-import usePWA from 'react-pwa-install-prompt'
- 
-const PwaIns = () => {
-  const { isStandalone, isInstallPromptSupported, promptInstall } = usePWA();
- 
- 
-  const onClickInstall = async () => {
-    const didInstall = await promptInstall()
-    if (didInstall) {
-      // User accepted PWA install
-    }
-  }
- 
-const renderInstallButton = () => {
-    if (isInstallPromptSupported && isStandalone)
- 
-      return (
-        <button onClick={onClickInstall}>Prompt PWA Install</button>
-      )
-    return null
-  }
- 
-  return (<div>
-    <h2>PWA Infos</h2>
-    <p>Is Install Prompt Supported ? {isInstallPromptSupported ? 'true' : 'false'}</p>
-    <p>Is Standalone ? {isStandalone ? 'true' : 'false'}</p>
-    {renderInstallButton()}
-    
-  </div>)
+import { usePWAInstall } from 'react-use-pwa-install'
+
+export const PwaIns = () => {
+	const install = usePWAInstall()
+
+	return (
+		<header>
+			<h1>My app</h1>
+			{install && <button onClick={install}>Install</button>}
+		</header>
+	)
 }
- 
+
 export default PwaIns;
