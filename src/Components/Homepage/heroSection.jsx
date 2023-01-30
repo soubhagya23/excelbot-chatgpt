@@ -64,7 +64,7 @@ const HeroSection = () => {
                   {newName}
                 </AnimatedText> */}
               </p>
-
+              <PwaIns/>
               <h1
                 style={{
                   fontWeight: "800",
@@ -76,7 +76,7 @@ const HeroSection = () => {
               <p className="dtr-intro-content color-dark">
               Our AI-based problem-solving tool is designed to revolutionize the way you approach and solve problems. Try it now and transform the way you work.
               </p>
-<PwaIns />
+
               <a
                 className="dtr-btn dtr-btn-small dtr-mt-50"
                 href="#"
