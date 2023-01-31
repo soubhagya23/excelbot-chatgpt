@@ -2,6 +2,6 @@ require('dotenv').config() ;
 
 module.exports = {
     env: {
-        OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+        REACT_APP_OPENAI_APIKEY: process.env.REACT_APP_OPENAI_APIKEY,
     }
 }

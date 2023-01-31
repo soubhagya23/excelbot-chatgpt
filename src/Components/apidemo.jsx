@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-const { Configuration, OpenAIApi } = require("openai");
 
 
 function ChatGPT() {
