@@ -1,15 +1,8 @@
 import { Configuration, OpenAIApi } from "openai"
 import React, { useState } from "react";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBTextArea
-} from "mdb-react-ui-kit";
-import { Button } from "@mui/material";
-import { RiSendPlaneFill } from 'react-icons/ri'
+import Bot from '../assets/images/bot-img.jpg'
+import Profile from '../assets/images/profile-img.jpg'
+import { RiSendPlane2Fill } from 'react-icons/ri'
 import FixedBottomNavigation from "../BottomBar/bottomBar";
 
 const DashBorad = () => {
@@ -43,6 +36,7 @@ const DashBorad = () => {
           , answer: response.data.choices[0].text
         }]
       });
+      console.log('ok');
     } catch (error) {
       console.error(error);
     }
@@ -54,38 +48,22 @@ const DashBorad = () => {
     console.log(quesAns);
     return (
       <>
-      
-        <div className="d-flex flex-row justify-content-end mb-4">
-          <div
-            className="p-3 me-3 border"
-            style={{ borderRadius: "15px", backgroundColor: "#fbfbfb" }}
-          >
-            <p className="small mb-0">
-              {quesAns.question !== '' && quesAns.question}
-            </p>
+        <div className="chat-message">
+          <div className="flex items-end justify-end">
+            <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end">
+              <div><span className="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white ">{quesAns.question !== ''
+                && quesAns.question}</span></div>
+            </div>
+            <img src={Profile} className="w-8 h-8 rounded-full order-2" />
           </div>
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-            alt="avatar 1"
-            style={{ width: "45px", height: "100%" }}
-          />
         </div>
-        <div className="d-flex flex-row justify-content-start mb-4">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-            alt="avatar 1"
-            style={{ width: "45px", height: "100%" }}
-          />
-          <div
-            className="p-3 ms-3"
-            style={{
-              borderRadius: "15px",
-              backgroundColor: "rgba(57, 192, 237,.2)",
-            }}
-          >
-            <p className="small mb-0">
-              {quesAns.answer !== '' && quesAns.answer}
-            </p>
+
+        <div className="chat-message">
+          <div className="flex items-end">
+            <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
+              <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">{quesAns.answer !== '' && quesAns.answer}</span></div>
+            </div>
+            <img src={Bot} className="w-8 h-8 rounded-full order-1" />
           </div>
         </div>
       </>
@@ -94,55 +72,43 @@ const DashBorad = () => {
 
   return (
     <>
-      <MDBContainer className="pt-5 ">
-        <MDBRow className="d-flex justify-content-center">
-          <MDBCol md="8" lg="6" xl="4">
-            <MDBCard id="chat1" style={{ borderRadius: "15px", marginTop: '12px' }}>
-              <MDBCardBody>
-                <div className="d-flex flex-row justify-content-start mb-4">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "100%" }}
-                  />
-                  <div
-                    className="p-3 ms-3"
-                    style={{
-                      borderRadius: "15px",
-                      backgroundColor: "rgba(57, 192, 237,.2)",
-                    }}
-                  >
-                    <p className="small mb-0">
-                      Type Anything
-                    </p>
-                  </div>
-                </div>
-                {
-                  (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
-                  quesAns.map((responseObj) => {
-                    console.log('entered');
-                    return messages(responseObj);
-                  })
-                }
+      <div className="flex-1 sm:p-6 justify-between flex flex-col h-screen w-4/5 mx-auto">
+        <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch mt-2 pt-3 h-3/4">
+          <div className="chat-message pt-5">
+            <div className="flex items-end">
+              <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
+                <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Type Anything..</span></div>
+              </div>
+              <img src={Bot} className="w-8 h-8 rounded-full order-1" />
+            </div>
+          </div>
+          {
+            (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
+            quesAns.map((response) => {
+              console.log(response);
+              return messages(response);
+            })
+          }
+        </div>
 
-                <MDBTextArea
-                  className="form-outline"
-                  id="textAreaExample"
-                  rows={4}
-                  placeholder='Ask your Question'
-                  style={{ resize: 'none', borderRadius: '20px' }}
-                  onChange={handleQuestionChange}
-                />
+        <div className="px-4 pt-4 mb-4 sm:mb-0">
+          <div className="flex flex-col md:flex-row space-x-2">
+            <input type="text" placeholder="Write your message!" className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3 border" onChange={handleQuestionChange} />
+            <div className="items-center">
+              <button type="button" className="inline-flex items-center justify-center rounded-lg px-4 sm:py-1.5 md:py-[15px] transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none w-full space-x-1" onClick={handleClick}>
+                <span className="font-bold md:text-lg">{loading ? "Generating.." : "Generate"}</span>
+                {loading ? null : <RiSendPlane2Fill size='25px' />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                <Button variant="contained" sx={{ display: 'flex', width: '100%', marginTop: '10px', borderRadius: '20px', backgroundColor: 'rgb(134 169 255)', padding: '11px', color: 'black' }} onClick={handleClick}>
-                  <RiSendPlaneFill size='18px' style={{ marginRight: '10px' }} />{loading ? 'Generating...' : 'Generate'}
-                </Button>
 
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+      {/* <script>
+const el = document.getElementById('messages')
+	el.scrollTop = el.scrollHeight
+</script> */}
       <FixedBottomNavigation />
     </>
   );

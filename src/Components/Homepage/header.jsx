@@ -29,7 +29,7 @@ const Header = () => {
     }
 
     return (
-        <header id="dtr-header-global" className="fixed-top">
+        <header id="dtr-header-global" className="fixed-top" style={{backgroundColor: 'whitesmoke'}}>
             <div className="container">
                 <div className="d-flex align-items-center justify-content-between">
                     {/* header left starts */}
