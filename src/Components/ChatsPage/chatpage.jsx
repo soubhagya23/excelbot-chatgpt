@@ -1,4 +1,5 @@
 import React from 'react'
+import Profile from '../assets/images/profile-img.jpg'
 
 const Chatpage = () => {
     return (
@@ -12,7 +13,7 @@ const Chatpage = () => {
                     <li className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0">
-                                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" />
+                                <img className="w-8 h-8 rounded-full" src={Profile} alt="Neil image" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate">
@@ -30,7 +31,7 @@ const Chatpage = () => {
                     <li className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0">
-                                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
+                                <img className="w-8 h-8 rounded-full" src={Profile} alt="Bonnie image" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -48,7 +49,7 @@ const Chatpage = () => {
                     <li className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0">
-                                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Michael image" />
+                                <img className="w-8 h-8 rounded-full" src={Profile} alt="Michael image" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -66,7 +67,7 @@ const Chatpage = () => {
                     <li className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0">
-                                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image" />
+                                <img className="w-8 h-8 rounded-full" src={Profile} alt="Lana image" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -84,7 +85,7 @@ const Chatpage = () => {
                     <li className="pt-3 pb-0 sm:pt-4">
                         <div className="flex items-center space-x-4">
                             <div className="flex-shrink-0">
-                                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Thomas image" />
+                                <img className="w-8 h-8 rounded-full" src={Profile} alt="Thomas image" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">

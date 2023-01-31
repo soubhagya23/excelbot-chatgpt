@@ -51,8 +51,8 @@ const DashBorad = () => {
         <div className="chat-message">
           <div className="flex items-end justify-end">
             <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end">
-              <div><span className="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white ">{quesAns.question !== ''
-                && quesAns.question}</span></div>
+              <div><span className="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white "><pre>{quesAns.question !== ''
+                && quesAns.question}</pre></span></div>
             </div>
             <img src={Profile} className="w-8 h-8 rounded-full order-2" />
           </div>
@@ -61,7 +61,7 @@ const DashBorad = () => {
         <div className="chat-message">
           <div className="flex items-end">
             <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
-              <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">{quesAns.answer !== '' && quesAns.answer}</span></div>
+              <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600"><pre>{quesAns.answer !== '' && quesAns.answer}</pre></span></div>
             </div>
             <img src={Bot} className="w-8 h-8 rounded-full order-1" />
           </div>
@@ -82,6 +82,7 @@ const DashBorad = () => {
               <img src={Bot} className="w-8 h-8 rounded-full order-1" />
             </div>
           </div>
+          <pre>
           {
             (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
             quesAns.map((response) => {
@@ -89,6 +90,7 @@ const DashBorad = () => {
               return messages(response);
             })
           }
+          </pre>
         </div>
 
         <div className="px-4 pt-4 mb-4">
