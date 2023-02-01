@@ -11,10 +11,11 @@ function App() {
   return (
     // <ChatGPT />
     <>
-      <div id='dtr-wrapper' className='clearfix'>
+      <div>
         <Header />
 
         <SmHeader />
+
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/dashboard' element={<DashBoard />} />

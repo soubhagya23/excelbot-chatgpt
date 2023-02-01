@@ -2,7 +2,7 @@ import { Box, Button, IconButton } from '@mui/material';
 import React, { useState } from 'react'
 import { CgProfile } from 'react-icons/cg';
 import { GrGoogle } from 'react-icons/gr';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../fireBase/authContext';
 import { FiMenu } from 'react-icons/fi';
 // import LogoDark from "../assets/images/logo-dark.png";
@@ -44,17 +44,22 @@ const SmHeader = () => {
             </a>{" "}
           </Box>
           {/* small devices logo ends */}
-          {
-            user ?
-              <Box sx={{ display: 'flex' }}>
-                <NavLink to='/dashboard' className='no-underline'>
-                  <IconButton variant='text'><CgProfile size='24px' color='blue' /></IconButton>
-                </NavLink>
+          {user ?
+            <div>
+              <Box sx={{ display: 'flex' }} className='dropdown'>
+                <IconButton variant='text' size='small' className="" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src={user.photoURL} alt='picture' className='h-7 w-7 rounded-full' /></IconButton>
+                <ul className="dropdown-menu py-0" aria-labelledby="dropdownMenuButton1">
+                  <li className='p-2'><h6 className="text-black no-underline pl-3 font-semibold">{user.displayName}</h6>
+                    <p className='text-sm -mt-2 px-3'>{user.email}</p></li>
+                  <li><Link to='/dashboard' className='text-black no-underline pl-5'>Dashboard</Link></li>
+                  <li className='p-2'><Button className='w-full' onClick={handleSignOut} variant='outlined'>Log Out</Button></li>
+                </ul>
               </Box>
-              :
-              <Box>
-                <Button onClick={handleSignIn} variant='contained'><Box sx={{ pr: 2, pb: '1px' }}><GrGoogle size='20px' /></Box>Log In</Button>
-              </Box>
+            </div>
+            :
+            <Box>
+              <Button onClick={handleSignIn} variant='contained'><Box sx={{ pr: 2, pb: '1px' }}><GrGoogle size='20px' /></Box>Log In</Button>
+            </Box>
           }
         </div>
         {
