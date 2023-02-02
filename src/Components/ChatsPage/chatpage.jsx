@@ -44,7 +44,7 @@ const Chatpage = () => {
                             chats &&
                             chats.map((response , index) => {
                                 const res = response.at(0);
-                                console.log(response , index);
+                                console.log(response);
                                 return (
                                     showChats(res , index)
                                 );
