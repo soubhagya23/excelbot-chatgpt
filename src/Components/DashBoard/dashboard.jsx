@@ -1,25 +1,34 @@
 import { Configuration, OpenAIApi } from "openai"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bot from '../assets/images/bot-img.jpg'
 import Profile from '../assets/images/profile-img.jpg'
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import FixedBottomNavigation from "../BottomBar/bottomBar";
 
 const DashBorad = () => {
+
   // Open AI API
 
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
   });
-  const openai = new OpenAIApi(configuration);
+  const openai = new OpenAIApi(configuration) ; 
+  
+  useEffect(() => {
+    localStorage.response ? setQuesAns(JSON.parse(localStorage.getItem('response'))) : setQuesAns([]) ;
+  }, [])
 
-  const [quesAns, setQuesAns] = useState([]);
+  const [quesAns, setQuesAns] = useState([]) ;
   const [currQues, setCurrQues] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleQuestionChange = (event) => {
     setCurrQues(event.target.value);
   };
+
+  useEffect(() => {
+    quesAns !== [] && localStorage.setItem('response' , JSON.stringify(quesAns)) ;
+  } , [quesAns]) ;
 
   const handleClick = async () => {
     setLoading(true);
@@ -44,6 +53,10 @@ const DashBorad = () => {
     setCurrQues('')
   };
 
+  const handleFunc = (currRes) => {
+    setQuesAns(currRes)
+  }
+
   const messages = (quesAns) => {
     console.log(quesAns);
     return (
@@ -54,7 +67,7 @@ const DashBorad = () => {
               <div><span className="px-4 py-2 rounded-lg inline-block bg-blue-600 text-white ">{quesAns.question !== ''
                 && quesAns.question}</span></div>
             </div>
-            <img src={Profile} className="w-8 h-8 rounded-full order-2" />
+            <img src={Profile} className="w-8 h-8 rounded-full order-2" alt="person"/>
           </div>
         </div>
 
@@ -63,7 +76,7 @@ const DashBorad = () => {
             <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
               <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">{quesAns.answer !== '' && quesAns.answer}</span></div>
             </div>
-            <img src={Bot} className="w-8 h-8 rounded-full order-1" />
+            <img src={Bot} className="w-8 h-8 rounded-full order-1" alt="bot"/>
           </div>
         </div>
       </>
@@ -79,11 +92,11 @@ const DashBorad = () => {
               <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
                 <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Type Anything..</span></div>
               </div>
-              <img src={Bot} className="w-8 h-8 rounded-full order-1" />
+              <img src={Bot} className="w-8 h-8 rounded-full order-1" alt="bot"/>
             </div>
           </div>
           {
-            (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
+            quesAns && (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
             quesAns.map((response) => {
               console.log(response);
               return messages(response);
@@ -104,12 +117,7 @@ const DashBorad = () => {
         </div>
       </div>
 
-
-      {/* <script>
-const el = document.getElementById('messages')
-	el.scrollTop = el.scrollHeight
-</script> */}
-      <FixedBottomNavigation />
+      <FixedBottomNavigation chats={quesAns} func={handleFunc}/>
     </>
   );
 }
