@@ -9,11 +9,11 @@ import { Button } from "@mui/material";
 const FixedBottomNavigation = (props) => {
 
   const handleClick = () => {
-    const storedChats = localStorage.allChats ? JSON.parse(localStorage.getItem('allChats')) : [] ;
-    const allChats = [...storedChats , props.chats] ;
+    const storedChats = localStorage.allChats ? JSON.parse(localStorage.getItem('allChats')) : [];
+    const allChats = [...storedChats, props.chats];
     localStorage.setItem('allChats', JSON.stringify(allChats)) ;
-    localStorage.setItem('response' , JSON.stringify([]) ) ;
-    props.func([]) ;
+    localStorage.setItem('response', JSON.stringify([])) ;
+    props.func([]);
   }
 
   return (
@@ -26,18 +26,18 @@ const FixedBottomNavigation = (props) => {
 
           <div className="w-full focus:text-blue-500 justify-center inline-block text-center pt-2 pb-1 shadow-lg">
             <Popover>
-            <PopoverHandler>
-            <span className="block text-xs"><BsPlusCircleFill size='25px' className="mx-auto hover:text-blue-500"/></span>
-            </PopoverHandler>
-            <PopoverContent>
-              <div>
-              <p className="text-[16px] font-semibold">Do you want to save the Chats?</p>
-              <div className="flex space-x-3 justify-center">
-              <Button variant="contained" onClick={handleClick}>Yes</Button>
-              <Button variant="outlined">No</Button>
-              </div>
-              </div>
-            </PopoverContent>
+              <PopoverHandler>
+                <span className="block text-xs"><BsPlusCircleFill size='25px' className="mx-auto hover:text-blue-500" /></span>
+              </PopoverHandler>
+              <PopoverContent>
+                <div>
+                  <p className="text-[16px] font-semibold">Do you want to save the Chats?</p>
+                  <div className="flex space-x-3 justify-center">
+                    <Button variant="contained" onClick={handleClick}>Yes</Button>
+                    <Button variant="outlined">No</Button>
+                  </div>
+                </div>
+              </PopoverContent>
             </Popover>
           </div>
 
