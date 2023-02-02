@@ -14,7 +14,7 @@ const Chatpage = () => {
     const showChats = (obj , index) => {
         console.log('entered');
         return (
-            <li className="py-3 sm:py-4">
+            <li className="py-3 sm:py-4" key={index}>
                 <div className="flex items-center space-x-4">
                     <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate">
@@ -24,8 +24,8 @@ const Chatpage = () => {
                             {obj.answer}
                         </p>
                     </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 p-2 hover:text-blue-500" onClick={handleClick(index)}>
-                        <BsArrowRightCircle size='20px'/>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 p-2 hover:text-blue-500">
+                        <BsArrowRightCircle size='20px' onClick={() => handleClick(index)} />
                     </div>
                 </div>
             </li>
