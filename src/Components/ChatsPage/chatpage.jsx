@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BsArrowRightCircle } from 'react-icons/bs';
-import FixedBottomNavigation from '../BottomBar/bottomBar'
+import { Link } from 'react-router-dom';
 
 const Chatpage = () => {
 
@@ -25,7 +25,7 @@ const Chatpage = () => {
                         </p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold text-gray-900 p-2 hover:text-blue-500">
-                        <BsArrowRightCircle size='20px' onClick={() => handleClick(index)} />
+                        <Link to='/dashboard' className='text-black'><BsArrowRightCircle size='20px' onClick={() => handleClick(index)} /></Link>
                     </div>
                 </div>
             </li>
@@ -53,7 +53,6 @@ const Chatpage = () => {
                     </ul>
                 </div>
             </div>
-            <FixedBottomNavigation />
         </>
     )
 }
