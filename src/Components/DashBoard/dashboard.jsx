@@ -13,12 +13,8 @@ const DashBorad = () => {
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
   });
   const openai = new OpenAIApi(configuration) ; 
-  
-  useEffect(() => {
-    localStorage.response ? setQuesAns(JSON.parse(localStorage.getItem('response'))) : setQuesAns([]) ;
-  }, [])
 
-  const [quesAns, setQuesAns] = useState([]) ;
+  const [quesAns, setQuesAns] = useState(localStorage.response ? JSON.parse(localStorage.getItem('response')) : []) ;
   const [currQues, setCurrQues] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +27,8 @@ const DashBorad = () => {
   } , [quesAns]) ;
 
   const handleClick = async () => {
-    setLoading(true);
+    setLoading(true)
+    if(currQues !== ''){
     try {
       const response = await openai.createCompletion({
         model: "text-davinci-003",
@@ -49,6 +46,10 @@ const DashBorad = () => {
     } catch (error) {
       console.error(error);
     }
+  }
+  else{
+    alert('Ask Something..') ;
+  }
     setLoading(false);
     setCurrQues('')
   };
