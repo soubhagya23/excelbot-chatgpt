@@ -4,7 +4,7 @@ import Bot from '../assets/images/bot-img.jpg'
 import Profile from '../assets/images/profile-img.jpg'
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import FixedBottomNavigation from "../BottomBar/bottomBar";
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
 const DashBorad = () => {
 
@@ -18,6 +18,8 @@ const DashBorad = () => {
   const [quesAns, setQuesAns] = useState(localStorage.response ? JSON.parse(localStorage.getItem('response')) : []);
   const [currQues, setCurrQues] = useState('Write an Excel formula');
   const [loading, setLoading] = useState(false);
+  const [python, setPython] = useState(false);
+  const [excel, setExcel] = useState(true) ;
 
   const handleQuestionChange = (event) => {
     setCurrQues(event.target.value);
@@ -56,6 +58,22 @@ const DashBorad = () => {
     setCurrQues('')
   };
 
+  const handleCheckBox = () => {
+    setExcel(!excel) ;
+    setPython(!python) ;
+  }
+
+  const handleCheckBoxClick = () => {
+    excel ? 
+    setCurrQues((prevVal) => {
+      return prevVal + 'in Python'
+    })
+    :
+    setCurrQues((prevVal) => {
+      return prevVal + 'in Excel'
+    })
+  }
+
   const handleFunc = (currRes) => {
     setQuesAns(currRes)
   }
@@ -91,10 +109,13 @@ const DashBorad = () => {
       <div className="flex-1 sm:p- justify-between flex flex-col h-screen md:w-4/5 mx-auto">
         <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch mt-4 md:mt-6 h-3/4">
           <div className="chat-message pt-5">
+          <div className="flex justify-between items-center">
             <FormGroup className="-space-y-3">
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Excel" />
-              <FormControlLabel control={<Checkbox />} label="Python" />
+              <FormControlLabel control={<Checkbox checked={excel}/>} label="Excel" onClick={handleCheckBox}/>
+              <FormControlLabel control={<Checkbox checked={python}/>} label="Python" onClick={handleCheckBox}/>
             </FormGroup>
+            <Button variant="contained" sx={{height: '40px', marginRight: '5px'}} onClick={handleCheckBoxClick}>{excel ? "Generate Python" : "Generate Excel"}</Button>
+          </div>
             <div className="flex items-end pt-2">
               <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
                 <div><span className="px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600">Type Anything..</span></div>
