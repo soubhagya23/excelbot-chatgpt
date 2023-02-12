@@ -70,7 +70,7 @@ const DashBorad = () => {
 
   const CheckBoxClick = () => {
     if(excel){
-      const ques = currQues + ' in Python code'
+      const ques = currQues + ' using Python'
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
