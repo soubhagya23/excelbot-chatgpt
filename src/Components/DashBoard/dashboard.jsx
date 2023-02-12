@@ -70,7 +70,7 @@ const DashBorad = () => {
 
   const CheckBoxClick = () => {
     if(excel){
-      const ques = currQues + ' in Python'
+      const ques = currQues + ' in Python code'
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
@@ -79,16 +79,6 @@ const DashBorad = () => {
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
-  }
-
-  const noChats = () => {
-    return (
-      <>
-        <div>
-          No Chats
-        </div>
-      </>
-    )
   }
 
   const handleFunc = (currRes) => {
@@ -134,12 +124,10 @@ const DashBorad = () => {
             </div>
           </div>
           {
-            quesAns && (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') ?
+            quesAns && (quesAns.slice(-1).answer !== '' && quesAns.slice(-1).answer !== '') &&
             quesAns.map((response) => {
               return messages(response);
             })
-            :
-            noChats()
           }
         </div>
 
