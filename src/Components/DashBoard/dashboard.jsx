@@ -69,13 +69,15 @@ const DashBorad = () => {
   }
 
   const CheckBoxClick = () => {
+    console.log(quesAns) ;
     if(excel){
-      const ques = currQues + ' using Python'
+      const len = quesAns.length
+      const ques = quesAns[len - 1].question + ' using Python'
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
     else{
-      const ques = currQues + ' in Excel'
+      const ques = quesAns.slice(-1).question + ' in Excel'
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
