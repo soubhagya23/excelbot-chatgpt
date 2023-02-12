@@ -72,12 +72,13 @@ const DashBorad = () => {
     console.log(quesAns) ;
     if(excel){
       const len = quesAns.length
-      const ques = quesAns[len - 1].question + ' using Python'
+      const ques = quesAns[len - 1].question.replace('Excel formula' , 'Python code')
+      console.log(ques) ;
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
     else{
-      const ques = quesAns.slice(-1).question + ' in Excel'
+      const ques = quesAns.slice(-1).question.replace('Python Code' , 'Excel Formula') ;
       setCurrQues(ques) ;
       handleClick(ques) ;
     }
