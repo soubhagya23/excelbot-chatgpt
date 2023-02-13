@@ -19,7 +19,7 @@ const DashBorad = () => {
   // Open AI API
 
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   });
   const openai = new OpenAIApi(configuration);
  
