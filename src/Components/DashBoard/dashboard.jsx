@@ -332,7 +332,7 @@ const DashBorad = () => {
                 </a>
               </div>
               <h5 className="text-xl font-bold leading-none text-gray-900">
-                {chats ? null : (
+                {chats ? "" : (
                   <Lottie options={defaultOptions} height={300} width={300} />
                 )}
               </h5>
