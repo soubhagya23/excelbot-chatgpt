@@ -4,14 +4,6 @@ import Bot from "../assets/images/bot-img.jpg";
 import Profile from "../assets/images/profile-img.jpg";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import FixedBottomNavigation from "../BottomBar/bottomBar";
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
 import { SiMicrosoftexcel, SiPython } from "react-icons/si";
 import Lottie from "react-lottie";
 import animation from "../Lottie/animation.json";
@@ -343,7 +335,7 @@ const DashBorad = () => {
                 return messages(response);
               })}
           </div>
-
+       
           <div className="px-4 pt-4 mb-4">
             <div className="flex flex-col md:flex-row space-x-2 mb-4">
               <input
@@ -353,8 +345,7 @@ const DashBorad = () => {
                 className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-8 bg-gray-200 rounded-md py-2 border"
                 onChange={handleQuestionChange}
               />
-
-              <div className="items-center">
+    <div className="items-center">
                 <button
                   type="button"
                   className="inline-flex items-center justify-center rounded-lg px-4 py-[7px] transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none w-full space-x-1"
