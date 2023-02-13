@@ -7,16 +7,18 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../fireBase/authContext";
 import { FiMenu } from "react-icons/fi";
 import { FcApproval } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 // import LogoDark from "../assets/images/logo-dark.png";
 
 const SmHeader = () => {
   const [show, setShow] = useState(false);
-
+  const navigate = useNavigate();
   const { googleSignIn, user, logOut } = useAuth();
 
   const handleSignIn = async () => {
     try {
       await googleSignIn();
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
     }
