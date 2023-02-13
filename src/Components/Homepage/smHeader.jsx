@@ -139,12 +139,12 @@ const SmHeader = () => {
 
           <Modal
             hideBackdrop
-            open={open}
+            open={open}     
             onClose={handleClose}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
           >
-            <Box sx={{ ...style }}>
+            <Box sx={{ ...style }} >
               <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button
                   type="button"
@@ -169,7 +169,7 @@ const SmHeader = () => {
                 </button>
                 <div
                   className="px-6 py-6 lg:px-8"
-                  style={{ backgroundColor: "#1a1a1a" }}
+                  style={{ backgroundColor: "#1a1a1a", borderRadius:20 }}
                 >
                   <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                     Sign in to our platform
@@ -181,7 +181,7 @@ const SmHeader = () => {
                     aria-label="Continue with google"
                     role="button"
                     style={{ background: "white" }}
-                    className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+                    className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
                   >
                     <svg
                       width={19}
