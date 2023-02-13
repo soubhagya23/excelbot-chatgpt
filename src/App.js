@@ -6,6 +6,7 @@ import Header from './Components/Homepage/header';
 import SmHeader from './Components/Homepage/smHeader';
 import SpeechRecognition from './Components/DashBoard/SpeechRecognition';
 import Chatpage from './Components/ChatsPage/chatpage';
+import EmailSignUp from './Components/Login/EmailSignUp';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/dashboard/chats' element={<Chatpage />} />
           <Route path='/test' element={<SpeechRecognition />} />
+          <Route path='/email' element={<EmailSignUp />} />
         </Routes>
       </div>
     </>

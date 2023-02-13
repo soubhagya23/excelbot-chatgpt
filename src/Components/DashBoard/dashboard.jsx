@@ -370,7 +370,9 @@ const DashBorad = () => {
               </div>
             </div>
           </div>
+          
         </div>
+        
       }
       <FixedBottomNavigation chats={quesAns} func={handleFunc} />
     </>
