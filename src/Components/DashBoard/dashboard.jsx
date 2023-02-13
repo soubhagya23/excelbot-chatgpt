@@ -19,12 +19,10 @@ const DashBorad = () => {
   // Open AI API
 
   const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_APIKEY,
+    apiKey: "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",
   });
   const openai = new OpenAIApi(configuration);
-  const [chats, setChats] = useState(
-    JSON.parse(localStorage.getItem("allChats"))
-  );
+ 
   const [quesAns, setQuesAns] = useState(
     localStorage.response ? JSON.parse(localStorage.getItem("response")) : []
   );
@@ -332,7 +330,7 @@ const DashBorad = () => {
                 </a>
               </div>
               <h5 className="text-xl font-bold leading-none text-gray-900">
-                {chats ? "" : (
+                {quesAns.length >0 ? "" : (
                   <Lottie options={defaultOptions} height={300} width={300} />
                 )}
               </h5>
