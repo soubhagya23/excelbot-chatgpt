@@ -4,7 +4,7 @@ import Bot from '../assets/images/bot-img.jpg'
 import Profile from '../assets/images/profile-img.jpg'
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import FixedBottomNavigation from "../BottomBar/bottomBar";
-import { Button, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const DashBorad = () => {
 
@@ -19,10 +19,11 @@ const DashBorad = () => {
   const [loading, setLoading] = useState(false);
   const [python, setPython] = useState(false);
   const [excel, setExcel] = useState(true);
-  const [currQues, setCurrQues] = useState("Write an Excel formula");
+  const [currQues, setCurrQues] = useState("Write an Excel Formula");
+  const [showDropDown, setShowDropDown] = useState('Excel') ;
 
   useEffect(() => {
-    excel ? setCurrQues("Write an Excel formula") : setCurrQues("Write a Python Code") 
+    excel ? setCurrQues("Write an Excel Formula") : setCurrQues("Write a Python code")
   }, [excel])
 
   const handleQuestionChange = (event) => {
@@ -30,13 +31,16 @@ const DashBorad = () => {
     console.log(currQues);
   };
 
+  const handleChange = (event) => {
+    setShowDropDown(event.target.value)
+  }
+
   useEffect(() => {
     quesAns !== [] && localStorage.setItem('response', JSON.stringify(quesAns));
   }, [quesAns]);
 
   const handleClick = async (Question) => {
     setLoading(true)
-    console.log(currQues)
     if (Question !== '') {
       try {
         const response = await openai.createCompletion({
@@ -69,18 +73,19 @@ const DashBorad = () => {
   }
 
   const CheckBoxClick = () => {
-    console.log(quesAns) ;
-    if(excel){
+    console.log(quesAns);
+    if (excel) {
       const len = quesAns.length
-      const ques = quesAns[len - 1].question.replace('Excel formula' , 'Python code')
-      console.log(ques) ;
-      setCurrQues(ques) ;
-      handleClick(ques) ;
+      const ques = quesAns[len - 1].question.replace('Excel Formula', 'Python code')
+      console.log(ques);
+      setCurrQues(ques);
+      handleClick(ques);
     }
-    else{
-      const ques = quesAns.slice(-1).question.replace('Python Code' , 'Excel Formula') ;
-      setCurrQues(ques) ;
-      handleClick(ques) ;
+    else {
+      const len = quesAns.length
+      const ques = quesAns[len - 1].question.replace('Python code', 'Excel Formula');
+      setCurrQues(ques);
+      handleClick(ques);
     }
   }
 
@@ -118,12 +123,24 @@ const DashBorad = () => {
       <div className="flex-1 sm:p- justify-between flex flex-col h-screen md:w-4/5 mx-auto">
         <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch mt-4 md:mt-6 h-3/4">
           <div className="chat-message pt-5">
-            <div className="flex justify-between items-center">
-              <FormGroup className="-space-y-3">
-                <FormControlLabel control={<Checkbox checked={excel} />} label="Excel" onClick={handleCheckBox} />
-                <FormControlLabel control={<Checkbox checked={python} />} label="Python" onClick={handleCheckBox} />
-              </FormGroup>
-              <Button variant="contained" sx={{ height: '40px', marginRight: '5px' }} onClick={CheckBoxClick }>{excel ? "Generate Python" : "Generate Excel"}</Button>
+            <div className="flex justify-between items-center pt-2">
+              <Box sx={{ paddingTop: '5px', width: 100}}>
+                <FormControl>
+                  <InputLabel id="select-label">Select</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Select"
+                    value={showDropDown}
+                    onChange={handleChange}
+                    sx={{height: '40px'}}
+                  >
+                    <MenuItem value='Excel' onClick={handleCheckBox}>Excel</MenuItem>
+                    <MenuItem value='Python' onClick={handleCheckBox}>Python</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <Button variant="contained" sx={{ height: '40px', marginRight: '5px' }} onClick={CheckBoxClick}>{excel ? "Generate Python" : "Generate Excel"}</Button>
             </div>
           </div>
           {
@@ -138,7 +155,7 @@ const DashBorad = () => {
           <div className="flex flex-col md:flex-row space-x-2 mb-4">
             <input type="text" placeholder="Write your message" value={currQues} className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-8 bg-gray-200 rounded-md py-2 border" onChange={handleQuestionChange} />
             <div className="items-center">
-              <button type="button" className="inline-flex items-center justify-center rounded-lg px-4 py-[7px] transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none w-full space-x-1" onClick={() => {handleClick(currQues)}}>
+              <button type="button" className="inline-flex items-center justify-center rounded-lg px-4 py-[7px] transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none w-full space-x-1" onClick={() => { handleClick(currQues) }}>
                 <span className="font-bold md:text-lg">{loading ? "Generating.." : "Generate"}</span>
                 {loading ? null : <RiSendPlane2Fill size='20px' />}
               </button>
@@ -146,7 +163,7 @@ const DashBorad = () => {
           </div>
         </div>
       </div>
-      }
+    }
       <FixedBottomNavigation chats={quesAns} func={handleFunc} />
     </>
   );
