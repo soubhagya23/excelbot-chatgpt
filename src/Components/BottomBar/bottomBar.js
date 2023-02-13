@@ -12,8 +12,8 @@ const FixedBottomNavigation = (props) => {
   const handleClick = () => {
     const storedChats = localStorage.allChats ? JSON.parse(localStorage.getItem('allChats')) : [];
     const allChats = [...storedChats, props.chats];
-    localStorage.setItem('allChats', JSON.stringify(allChats)) ;
-    localStorage.setItem('response', JSON.stringify([])) ;
+    localStorage.setItem('allChats', JSON.stringify(allChats));
+    localStorage.setItem('response', JSON.stringify([]));
     props.func([]);
   }
   function classNames(...classes) {
@@ -21,7 +21,7 @@ const FixedBottomNavigation = (props) => {
   }
   return (
     <>
-{/*     <div className="">
+      {/*     <div className="">
       <section id="bottom-navigation" className="block fixed inset-x-0 mt-3 z-10 bottom-0 bg-gray-200 shadow-lg w-full mx-auto">
         <div id="tabs" className="flex justify-evenly">
           <div className="w-full focus:text-blue-500 justify-center inline-block text-center pt-2 pb-1">
@@ -61,52 +61,61 @@ const FixedBottomNavigation = (props) => {
  */}
 
 
-<div className="w-full max-w-md px-2 sm:px-0" style={{position:'fixed',bottom:0, marginBottom:10}}>
-<Tab.Group>
-  <Tab.List className="flex space-x-1 rounded-xl bg-green-600/60 p-1">
-    <Tab
-      className={({ selected }) =>
-        classNames(
-          "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-          "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-          selected
-            ? "bg-white shadow"
-            : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-        )
-      }
-    >
-      Home
-    </Tab>
-    <Tab
-      className={({ selected }) =>
-        classNames(
-          "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-          "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-          selected
-            ? "bg-white shadow"
-            : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-        )
-      }
-    >
-      Chat
-    </Tab>
-    <Tab
-      className={({ selected }) =>
-        classNames(
-          "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-          "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-          selected
-            ? "bg-white shadow"
-            : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-        )
-      }
-    >
-      Profile
-    </Tab>
-  </Tab.List>
-</Tab.Group>
-</div>
-</>
+      <div className="w-full max-w-md px-2 sm:px-0" style={{ position: 'fixed', bottom: 0, marginBottom: 10 }}>
+        <Tab.Group>
+          <Tab.List className="flex space-x-1 rounded-xl bg-green-600/60 p-1">
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  selected
+                    ? "bg-white shadow"
+                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                )
+              }
+            >
+              Home
+            </Tab>
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  selected
+                    ? "bg-white shadow"
+                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                )
+              }
+            >
+              Chat
+            </Tab>
+            <Popover>
+              <PopoverHandler>
+                <Tab
+                  className={({ selected }) =>
+                    classNames(
+                      "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                      "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                      selected
+                        ? "bg-white shadow"
+                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    )
+                  }
+                >
+                  Profile
+                </Tab>
+              </PopoverHandler>
+              <PopoverContent>
+                <div>
+                  Profile
+                </div>
+              </PopoverContent>
+            </Popover>
+          </Tab.List>
+        </Tab.Group>
+      </div>
+    </>
   );
 }
 
