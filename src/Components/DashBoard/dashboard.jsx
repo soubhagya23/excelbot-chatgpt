@@ -9,10 +9,10 @@ import Lottie from "react-lottie";
 import animation from "../Lottie/animation.json";
 const DashBorad = () => {
   // Open AI API
-  //API KEY = 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
+  //API KEY = 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
 
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.REACT_APP_OPENAI_APIKEY ,
   });
   const openai = new OpenAIApi(configuration);
 

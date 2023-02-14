@@ -77,6 +77,7 @@ const FixedBottomNavigation = (props) => {
             >
               Home
             </Tab>
+
             <Tab
               className={({ selected }) =>
                 classNames(
@@ -88,8 +89,36 @@ const FixedBottomNavigation = (props) => {
                 )
               }
             >
-              Chat
+              <Link to='/dashboard/chats' className="text-blue-100 no-underline">Chat</Link>
             </Tab>
+
+            <Popover>
+            <PopoverHandler>
+            <Tab
+              className={({ selected }) =>
+                classNames(
+                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  selected
+                    ? "bg-white shadow"
+                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                )
+              }
+            >
+              <span className="block text-xs"><BsPlusCircleFill size='25px' className="mx-auto hover:text-blue-500" /></span>
+            </Tab>
+            </PopoverHandler>
+            <PopoverContent>
+            <div>
+                  <p className="text-[16px] font-semibold">Do you want to save the Chats?</p>
+                  <div className="flex space-x-3 justify-center">
+                    <Button variant="contained" onClick={handleClick}>Yes</Button>
+                    <Button variant="outlined">No</Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
             <Popover>
               <PopoverHandler>
                 <Tab
