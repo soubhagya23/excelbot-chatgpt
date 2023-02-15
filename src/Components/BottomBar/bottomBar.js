@@ -92,7 +92,7 @@ const FixedBottomNavigation = (props) => {
               <Link to='/dashboard/chats' className="text-blue-100 no-underline">Chat</Link>
             </Tab>
 
-            <Popover>
+            {/* <Popover>
             <PopoverHandler>
             <Tab
               className={({ selected }) =>
@@ -117,7 +117,7 @@ const FixedBottomNavigation = (props) => {
                   </div>
                 </div>
               </PopoverContent>
-            </Popover>
+            </Popover> */}
 
             <Popover>
               <PopoverHandler>
