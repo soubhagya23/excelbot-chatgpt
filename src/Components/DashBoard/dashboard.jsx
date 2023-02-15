@@ -5,14 +5,21 @@ import Profile from "../assets/images/profile-img.jpg";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import FixedBottomNavigation from "../BottomBar/bottomBar";
 import { SiMicrosoftexcel, SiPython } from "react-icons/si";
+import { Button } from "@mui/material";
 import Lottie from "react-lottie";
 import animation from "../Lottie/animation.json";
-const DashBorad = () => {
-  // Open AI API
-  //API KEY = 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
+import {
+  Popover,
+  PopoverHandler,
+  PopoverContent,
+} from "@material-tailwind/react";
+
+const DashBorad = (props) => {
+  
 
   const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_APIKEY ,
+     apiKey: process.env.REACT_APP_OPENAI_APIKEY ,
+    
   });
   const openai = new OpenAIApi(configuration);
 
@@ -115,7 +122,6 @@ const DashBorad = () => {
   const messages = (quesAns) => {
     return (
       <>
-
         <div className="chat-message">
           <div className="flex items-end justify-end">
             <div className="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end">
@@ -238,7 +244,9 @@ const DashBorad = () => {
           >
             <div className="chat-message">
               <h5 className="text-xl font-bold leading-none text-gray-900">
-                {quesAns.length > 0 ? "" : (
+                {quesAns.length > 0 ? (
+                  ""
+                ) : (
                   <Lottie options={defaultOptions} height={300} width={300} />
                 )}
               </h5>
@@ -251,6 +259,34 @@ const DashBorad = () => {
                 return messages(response);
               })}
           </div>
+
+          {quesAns.length < 1 ? (
+            ""
+          ) : (
+            <Popover>
+              <PopoverHandler>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    type="button"
+                    class="text-white bg-gray-300 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  >
+                    Save
+                  </button>
+                </div>
+              </PopoverHandler>
+              <PopoverContent>
+                <div>
+                  <p className="text-[16px] font-semibold">
+                    Do you want to save the Chats?
+                  </p>
+                  <div className="flex space-x-3 justify-center">
+                    <Button variant="contained">Yes</Button>
+                    <Button variant="outlined">No</Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          )}
 
           <div className="px-4 mb-5">
             <div className="flex space-x-2 mb-2 pt-3">
@@ -269,14 +305,12 @@ const DashBorad = () => {
                     handleClick(currQues);
                   }}
                 >
-                  {loading ? '...' : <RiSendPlane2Fill size="25px" />}
+                  {loading ? "..." : <RiSendPlane2Fill size="25px" />}
                 </button>
               </div>
             </div>
           </div>
-
         </div>
-
       }
       <FixedBottomNavigation chats={quesAns} func={handleFunc} />
     </>

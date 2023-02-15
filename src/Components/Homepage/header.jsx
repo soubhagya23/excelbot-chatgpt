@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useAuth } from '../../fireBase/authContext';
-import { CgProfile } from 'react-icons/cg'
 import { GrGoogle } from 'react-icons/gr'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
-import { Button, Divider, IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 
 const Header = () => {
 
