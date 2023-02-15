@@ -15,12 +15,11 @@ import {
 } from "@material-tailwind/react";
 
 const DashBorad = (props) => {
-  // Open AI API
-  //API KEY = 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
+  
 
   const configuration = new Configuration({
-    /* apiKey: process.env.REACT_APP_OPENAI_APIKEY , */
-    apiKey: "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",
+     apiKey: process.env.REACT_APP_OPENAI_APIKEY ,
+    
   });
   const openai = new OpenAIApi(configuration);
 
