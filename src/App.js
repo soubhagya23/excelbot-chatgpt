@@ -11,6 +11,7 @@ import SpeechRecognition from "./Components/DashBoard/SpeechRecognition";
 import Chatpage from "./Components/ChatsPage/chatpage";
 import EmailSignUp from "./Components/Login/EmailSignUp";
 import BBar from "./Components/BottomBar/bBar";
+import MainBoard from "./Components/DashBoard/MainBoard";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,8 +33,8 @@ function App() {
   return (
     <>
       <div>
-        <Header />
-        <SmHeader />
+       {/*  <Header />
+        <SmHeader /> */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/dashboard" element={<DashBoard />} onEnter={requireAuth} />
@@ -41,6 +42,7 @@ function App() {
           <Route path="/test" element={<SpeechRecognition />} onEnter={requireAuth} />
           <Route path="/email" element={<EmailSignUp />} />
           <Route path="/bar" element={<BBar />} onEnter={requireAuth} />
+          <Route path="/board" element={<MainBoard />} />
         </Routes>
       </div>
     </>
