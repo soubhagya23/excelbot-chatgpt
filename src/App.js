@@ -37,7 +37,7 @@ function App() {
         <SmHeader /> */}
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/dashboard" element={<DashBoard />} onEnter={requireAuth} />
+          <Route path="/dashboard" element={<MainBoard />} onEnter={requireAuth} />
           <Route path="/dashboard/chats" element={<Chatpage />} onEnter={requireAuth} />
           <Route path="/test" element={<SpeechRecognition />} onEnter={requireAuth} />
           <Route path="/email" element={<EmailSignUp />} />
