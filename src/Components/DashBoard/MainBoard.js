@@ -1,6 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
 import React, { useState } from "react";
-import { useAuth } from "../../fireBase/authContext";
 
 import VerticalMenu from "../VerticalMenu/verticalMenu";
 
@@ -8,7 +7,6 @@ const MainBoard = () => {
   const [excel, setExcel] = useState(true);
   const [python, setPython] = useState(false);
   const [vba, setVba] = useState(false);
-  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -75,7 +73,7 @@ const MainBoard = () => {
               <div className="sm:flex sm:items-center sm:justify-between">
                 <div className="text-center sm:text-left">
                   <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-                    Welcome Back, {user.displayName}!
+                    Welcome Back, User!
                   </h1>
 
                   <p
