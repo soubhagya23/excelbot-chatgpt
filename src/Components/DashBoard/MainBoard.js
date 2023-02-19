@@ -1,15 +1,17 @@
 import { Configuration, OpenAIApi } from "openai";
 import React, { useState } from "react";
+import { useAuth } from "../../fireBase/authContext";
+
 import VerticalMenu from "../VerticalMenu/verticalMenu";
 
 const MainBoard = () => {
-
   const [excel, setExcel] = useState(true);
   const [python, setPython] = useState(false);
   const [vba, setVba] = useState(false);
-  const [loading, setLoading] = useState(false) ;
-  const [question, setQuestion] = useState('') ;
-  const [answer, setAnswer] = useState('') ;
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
@@ -19,18 +21,19 @@ const MainBoard = () => {
 
   const handleClick = async () => {
     setLoading(true);
-    setAnswer() ;
+    setAnswer();
     if (question !== "") {
-      var ques ;
-      if(excel){
-        ques = question + ' generate in Excel'
+      var ques;
+      if (excel) {
+        ques = question + " generate in Excel";
       }
       if (python) {
-        ques = question + ' generate in Python'
-      } if (vba) {
-        ques = question + ' generate in VBA'
+        ques = question + " generate in Python";
       }
-      console.log(ques) ;
+      if (vba) {
+        ques = question + " generate in VBA";
+      }
+      console.log(ques);
       try {
         const response = await openai.createCompletion({
           model: "text-davinci-003",
@@ -38,7 +41,7 @@ const MainBoard = () => {
           temperature: 0.5,
           max_tokens: 1024,
         });
-        setAnswer(response.data.choices[0].text) ;
+        setAnswer(response.data.choices[0].text);
         console.log("ok");
       } catch (error) {
         console.error(error);
@@ -50,17 +53,17 @@ const MainBoard = () => {
   };
 
   const handleChange = (event) => {
-    setQuestion(event.target.value) ;
-  }
+    setQuestion(event.target.value);
+  };
 
   const copyText = () => {
-    navigator.clipboard.writeText(answer) ;
-  }
+    navigator.clipboard.writeText(answer);
+  };
 
   const resetClick = () => {
-    setQuestion('');
+    setQuestion("");
     setAnswer();
-  }
+  };
 
   return (
     <div>
@@ -72,7 +75,7 @@ const MainBoard = () => {
               <div className="sm:flex sm:items-center sm:justify-between">
                 <div className="text-center sm:text-left">
                   <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-                    Welcome Back, User!
+                    Welcome Back, {user.displayName}!
                   </h1>
 
                   <p
@@ -131,9 +134,9 @@ const MainBoard = () => {
                     className="peer hidden [&:checked_+_label_svg]:block"
                     defaultChecked
                     onClick={() => {
-                      setExcel(true)
-                      setPython(false)
-                      setVba(false)
+                      setExcel(true);
+                      setPython(false);
+                      setVba(false);
                     }}
                   />
 
@@ -167,9 +170,9 @@ const MainBoard = () => {
                     id="DeliveryStandard1"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={() => {
-                      setExcel(false)
-                      setPython(true)
-                      setVba(false)
+                      setExcel(false);
+                      setPython(true);
+                      setVba(false);
                     }}
                   />
 
@@ -203,9 +206,9 @@ const MainBoard = () => {
                     id="DeliveryPriority"
                     className="peer hidden [&:checked_+_label_svg]:block"
                     onClick={() => {
-                      setExcel(false)
-                      setPython(false)
-                      setVba(true)
+                      setExcel(false);
+                      setPython(false);
+                      setVba(true);
                     }}
                   />
 
@@ -247,20 +250,22 @@ const MainBoard = () => {
                 style={{ textDecoration: "none", textAlign: "center" }}
                 onClick={handleClick}
               >
-                {loading ?  'Generating...' : 'Generate'}
+                {loading ? "Generating..." : "Generate"}
               </button>
 
               <article className="rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 transition hover:shadow-sm mt-4">
                 <div className="rounded-[10px] bg-white p-4 !pt-20 sm:p-6">
                   <a href="#" className="no-underline">
                     <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-                      {answer ? answer : 'Result will be shown here'}
+                      {answer ? answer : "Result will be shown here"}
                     </h3>
                   </a>
 
                   <div className="mt-4 flex flex-wrap gap-1">
                     <span className="whitespace-nowrap rounded-full bg-green-100 px-2.5 py-0.5 text-xs text-purple-600">
-                      {(excel && 'Excel') || (python && 'Python') || (vba && 'VBA')}
+                      {(excel && "Excel") ||
+                        (python && "Python") ||
+                        (vba && "VBA")}
                     </span>
                   </div>
                 </div>

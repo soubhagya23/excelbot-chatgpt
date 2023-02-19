@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import SheetsImg from "../assets/sheets.png";
+import { useAuth } from "../../fireBase/authContext";
+
 
 export default function VerticalMenu() {
   const [show, setShow] = useState(false);
