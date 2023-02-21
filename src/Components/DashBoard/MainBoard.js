@@ -10,6 +10,9 @@ const MainBoard = () => {
   const [loading, setLoading] = useState(false);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [stepper, setStepper] = useState(false) ;
+  const [inputFields, setInputFields] = useState([1]) ;
+  const [stepperQues, setStepperQues] =  useState(Array(inputFields.length)) ;
 
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
@@ -20,8 +23,16 @@ const MainBoard = () => {
   const handleClick = async () => {
     setLoading(true);
     setAnswer();
+    if(stepper){
+      let ques = '' ;
+      stepperQues.forEach((input) => {
+        ques = ques + input + ',' ;
+      })
+      setQuestion(ques) ;
+    }
     if (question !== "") {
       var ques;
+      console.log(question) ;
       if (excel) {
         ques = question + " generate in Excel";
       }
@@ -62,6 +73,18 @@ const MainBoard = () => {
     setQuestion("");
     setAnswer();
   };
+
+  const handleInputFields = () => {
+    setInputFields((prevVal) => {return [...prevVal, inputFields.length + 1]}) ;
+    console.log(inputFields) ;
+  }
+
+  const handleChangeInputs = (index, event) => {
+    let ques = stepperQues ;
+    ques[index] = event.target.value ;
+    setStepperQues(ques) ;
+    console.log(stepperQues) ;
+  }
 
   return (
     <div>
@@ -232,8 +255,19 @@ const MainBoard = () => {
                     </div>
                   </label>
                 </div>
+                <button className='border rounded-lg mx-auto px-3 bg-blue-600 text-white font-semibold' onClick={() => setStepper(!stepper)}>{stepper ? 'Remove Steps' : 'Add Steps'}</button>
               </fieldset>
               <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                {stepper ? 
+                <div className="flex flex-col justify-center m-auto">
+                  <button onClick={handleInputFields} className='border rounded-lg w-fit mx-auto px-3 py-1 bg-blue-600 text-white font-semibold'>Add New</button>
+                  {
+                    inputFields.map((index) => {
+                      return <input className="px-2 my-1 border rounded-sm shadow-md" onChange={(event) => handleChangeInputs(index, event)}/>
+                    })
+                  }
+                </div>
+                 : 
                 <input
                   style={{ height: "130px" }}
                   type="text"
@@ -241,7 +275,7 @@ const MainBoard = () => {
                   placeholder="Formula to sum A1-A9 if column B1 has marketing and C1 has data"
                   className="px-3 py-3 mt-4 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pl-10"
                   onChange={handleChange}
-                />
+                />}
               </div>
               <button
                 className="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 w-full"
