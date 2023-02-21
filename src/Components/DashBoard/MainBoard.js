@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 import React, { useState } from "react";
-
 import VerticalMenu from "../VerticalMenu/verticalMenu";
+import BBar from "../BottomBar/bBar";
 
 const MainBoard = () => {
   const [excel, setExcel] = useState(true);
@@ -10,9 +10,9 @@ const MainBoard = () => {
   const [loading, setLoading] = useState(false);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [stepper, setStepper] = useState(false) ;
-  const [inputFields, setInputFields] = useState([1]) ;
-  const [stepperQues, setStepperQues] =  useState(Array(inputFields.length)) ;
+  const [stepper, setStepper] = useState(false);
+  const [inputFields, setInputFields] = useState([1]);
+  const [stepperQues, setStepperQues] = useState(Array(inputFields.length));
 
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_APIKEY,
@@ -23,16 +23,16 @@ const MainBoard = () => {
   const handleClick = async () => {
     setLoading(true);
     setAnswer();
-    if(stepper){
-      let ques = '' ;
+    if (stepper) {
+      let ques = "";
       stepperQues.forEach((input) => {
-        ques = ques + input + ',' ;
-      })
-      setQuestion(ques) ;
+        ques = ques + input + ",";
+      });
+      setQuestion(ques);
     }
     if (question !== "") {
       var ques;
-      console.log(question) ;
+      console.log(question);
       if (excel) {
         ques = question + " generate in Excel";
       }
@@ -75,18 +75,21 @@ const MainBoard = () => {
   };
 
   const handleInputFields = () => {
-    setInputFields((prevVal) => {return [...prevVal, inputFields.length + 1]}) ;
-    console.log(inputFields) ;
-  }
+    setInputFields((prevVal) => {
+      return [...prevVal, inputFields.length + 1];
+    });
+    console.log(inputFields);
+  };
 
   const handleChangeInputs = (index, event) => {
-    let ques = stepperQues ;
-    ques[index] = event.target.value ;
-    setStepperQues(ques) ;
-    console.log(stepperQues) ;
-  }
+    let ques = stepperQues;
+    ques[index] = event.target.value;
+    setStepperQues(ques);
+    console.log(stepperQues);
+  };
 
   return (
+    <>
     <div>
       <VerticalMenu />
       <div className="p-4 sm:ml-64">
@@ -95,7 +98,7 @@ const MainBoard = () => {
             <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
               <div className="sm:flex sm:items-center sm:justify-between">
                 <div className="text-center sm:text-left">
-                  <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                  <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl" style={{textAlign:'left'}}>
                     Welcome Back, User!
                   </h1>
 
@@ -145,45 +148,48 @@ const MainBoard = () => {
                   Make sure to provide enough information.
                 </p>
               </div>
-              <fieldset className="grid grid-cols-5 gap-4 mt-4">
-                <div>
-                  <input
-                    type="radio"
-                    name="DeliveryOption"
-                    value="DeliveryStandard"
-                    id="DeliveryStandard"
-                    className="peer hidden [&:checked_+_label_svg]:block"
-                    defaultChecked
-                    onClick={() => {
-                      setExcel(true);
-                      setPython(false);
-                      setVba(false);
-                    }}
-                  />
+              <fieldset className="flex mb-4 mt-4 -mx-2">
+                <div class="w-1/3 px-2">
+                  <div>
+                    <input
+                      type="radio"
+                      name="DeliveryOption"
+                      value="DeliveryStandard"
+                      id="DeliveryStandard"
+                      className="peer hidden [&:checked_+_label_svg]:block"
+                      defaultChecked
+                      onClick={() => {
+                        setExcel(true);
+                        setPython(false);
+                        setVba(false);
+                      }}
+                    />
 
-                  <label
-                    for="DeliveryStandard"
-                    className="block cursor-pointer rounded-lg border border-gray-100 p-2 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                  >
-                    <div className="flex items-center justify-between">
-                      <p className="text-gray-700">Excel/Sheets</p>
+                    <label
+                      for="DeliveryStandard"
+                      className="block cursor-pointer rounded-lg border border-gray-100 p-2 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="text-gray-700">Excel</p>
 
-                      <svg
-                        className="hidden h-5 w-5 text-blue-600"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </label>
+                        <svg
+                          className="hidden h-5 w-5 text-blue-600"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </label>
+                  </div>
                 </div>
-                <div>
+
+                <div class="w-1/3 px-2"><div>
                   <input
                     type="radio"
                     name="DeliveryOption"
@@ -218,8 +224,9 @@ const MainBoard = () => {
                       </svg>
                     </div>
                   </label>
-                </div>
-                <div>
+                </div></div>
+                
+                <div class="w-1/3 px-2"> <div>
                   <input
                     type="radio"
                     name="DeliveryOption"
@@ -254,28 +261,44 @@ const MainBoard = () => {
                       </svg>
                     </div>
                   </label>
-                </div>
-                <button className='border rounded-lg mx-auto px-3 bg-blue-600 text-white font-semibold' onClick={() => setStepper(!stepper)}>{stepper ? 'Remove Steps' : 'Add Steps'}</button>
+                </div></div>
+
+               
               </fieldset>
+              <button
+                className="border rounded-lg mx-auto px-3 bg-blue-600 text-white font-semibold"
+                onClick={() => setStepper(!stepper)}
+              >
+                {stepper ? "Remove Steps" : "Add Steps"}
+              </button>
               <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                {stepper ? 
-                <div className="flex flex-col justify-center m-auto">
-                  <button onClick={handleInputFields} className='border rounded-lg w-fit mx-auto px-3 py-1 bg-blue-600 text-white font-semibold'>Add New</button>
-                  {
-                    inputFields.map((index) => {
-                      return <input className="px-2 my-1 border rounded-sm shadow-md" onChange={(event) => handleChangeInputs(index, event)}/>
-                    })
-                  }
-                </div>
-                 : 
-                <input
-                  style={{ height: "130px" }}
-                  type="text"
-                  value={question}
-                  placeholder="Formula to sum A1-A9 if column B1 has marketing and C1 has data"
-                  className="px-3 py-3 mt-4 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pl-10"
-                  onChange={handleChange}
-                />}
+                {stepper ? (
+                  <div className="flex flex-col justify-center m-auto">
+                    <button
+                      onClick={handleInputFields}
+                      className="border rounded-lg w-fit mx-auto px-3 py-1 bg-blue-600 text-white font-semibold"
+                    >
+                      Add New
+                    </button>
+                    {inputFields.map((index) => {
+                      return (
+                        <input
+                          className="px-2 my-1 border rounded-sm shadow-md"
+                          onChange={(event) => handleChangeInputs(index, event)}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <input
+                    style={{ height: "130px" }}
+                    type="text"
+                    value={question}
+                    placeholder="Formula to sum A1-A9 if column B1 has marketing and C1 has data"
+                    className="px-3 py-3 mt-4 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    onChange={handleChange}
+                  />
+                )}
               </div>
               <button
                 className="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 w-full"
@@ -303,7 +326,7 @@ const MainBoard = () => {
                 </div>
               </article>
               <div
-                className="mt-4"
+                className="w-full flex flex-col sm:flex-row flex-wrap sm:flex-nowrap py-4 flex-grow"
                 style={{ display: "flex", justifyContent: "end", gap: "20px" }}
               >
                 <button
@@ -320,19 +343,24 @@ const MainBoard = () => {
                 >
                   Reset
                 </button>
-                <button
+                  <button
                   className="inline-block rounded border border-indigo-600 bg-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                   style={{ textDecoration: "none" }}
                   onClick={handleClick}
                 >
                   Incorrect
                 </button>
+               
+               
+              
               </div>
             </div>
           </header>
         </div>
       </div>
     </div>
+    <BBar />
+    </>
   );
 };
 

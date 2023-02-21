@@ -1,9 +1,7 @@
 import { Box, Button, IconButton, Modal } from "@mui/material";
 import React, { useState } from "react";
-import { CgProfile } from "react-icons/cg";
-import { GrGoogle } from "react-icons/gr";
 import EmailSignUp from "../Login/EmailSignUp";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../fireBase/authContext";
 import { FiMenu } from "react-icons/fi";
 import { FcApproval } from "react-icons/fc";
@@ -121,21 +119,22 @@ const SmHeader = () => {
               </Box>
             </div>
           ) : (
-            <Button
-              variant="outlined"
-              onClick={handleOpen}
-              style={{
-                backgroundColor: "#05182b",
-                color: "white",
-                textTransform: "none",
-                fontFamily: "Inter",
+            <Link to="/login"> <Button
+            variant="outlined"
+            
+            style={{
+              backgroundColor: "#05182b",
+              color: "white",
+              textTransform: "none",
+              fontFamily: "Inter",
 
-                borderRadius: "32px",
-              }}
-            >
-              <FcApproval style={{ marginRight: "10px" }} size={23} />
-              Login
-            </Button>
+              borderRadius: "32px",
+            }}
+          >
+            <FcApproval style={{ marginRight: "10px" }} size={23} />
+            Login
+          </Button></Link>
+           
           )}
 
           <Modal

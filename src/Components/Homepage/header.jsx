@@ -144,9 +144,9 @@ const Header = () => {
                     </div>
                   ) : (
                     <Box>
-                      <Button
+                      <Link to="/login"><Button
                         variant="outlined"
-                        onClick={handleOpen}
+                        
                         style={{
                           backgroundColor: "#05182b",
                           color: "white",
@@ -158,7 +158,8 @@ const Header = () => {
                       >
                         <FcApproval style={{ marginRight: "10px" }} size={23} />
                         Login
-                      </Button>
+                      </Button></Link>
+                      
                     </Box>
                   )}
                 </li>

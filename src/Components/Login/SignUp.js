@@ -21,7 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await signUpWithEmail(email, password);
-      navigate("/board");
+      navigate("/dashboard");
     } catch (error) {
       if (
         error.message ===
